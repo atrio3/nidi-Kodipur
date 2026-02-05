@@ -15,7 +15,9 @@ const VehicleList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "vehicleQuantityList"));
+        const querySnapshot = await getDocs(
+          collection(db, "vehicleQuantityList"),
+        );
         const newData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -29,27 +31,43 @@ const VehicleList = () => {
     fetchData();
   }, []);
 
-  const filteredVehicles = vehicles.filter(vehicle => Array.isArray(vehicle.location) && vehicle.location.includes("ITPL"));
+  const filteredVehicles = vehicles.filter(
+    (vehicle) =>
+      Array.isArray(vehicle.location) && vehicle.location.includes("KODIPUR"),
+  );
 
-  const quantity = filteredVehicles.map(vehicle =>
-    vehicle.location.findIndex(location => location === "ITPL") !== -1 ?
-      vehicle.quantity[vehicle.location.findIndex(location => location === "ITPL")] :
-      ""
+  const quantity = filteredVehicles.map((vehicle) =>
+    vehicle.location.findIndex((location) => location === "KODIPUR") !== -1
+      ? vehicle.quantity[
+          vehicle.location.findIndex((location) => location === "KODIPUR")
+        ]
+      : "",
   );
 
   return (
-    <Paper elevation={3} style={{ borderRadius: "14px", margin: "20px", padding: "20px" }}>
+    <Paper
+      elevation={3}
+      style={{ borderRadius: "14px", margin: "20px", padding: "20px" }}
+    >
       <TableContainer>
         <Table>
           <TableHead style={{ backgroundColor: "#f2f2f2" }}>
             <TableRow>
-              <TableCell colSpan={2} align="center" style={{ fontWeight: "bold" }}>
-                ITPL
+              <TableCell
+                colSpan={2}
+                align="center"
+                style={{ fontWeight: "bold" }}
+              >
+                KODIPUR
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell align="center" style={{ fontWeight: "bold" }}>Name</TableCell>
-              <TableCell align="center" style={{ fontWeight: "bold" }}>Quantity</TableCell>
+              <TableCell align="center" style={{ fontWeight: "bold" }}>
+                Name
+              </TableCell>
+              <TableCell align="center" style={{ fontWeight: "bold" }}>
+                Quantity
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

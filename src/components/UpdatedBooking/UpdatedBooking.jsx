@@ -26,7 +26,7 @@ const UpdatedBooking = () => {
             ...data[key],
           }));
           const filteredData = updatedBookingsArray.filter(
-            (item) => item.userLocation === "ITPL"
+            (item) => item.userLocation === "KODIPUR",
           );
           setTableData(filteredData);
           setFilteredData(filteredData);
@@ -45,7 +45,7 @@ const UpdatedBooking = () => {
   useEffect(() => {
     const filtered = searchQuery
       ? tableData.filter((user) =>
-          user.name.toLowerCase().includes(searchQuery.toLowerCase())
+          user.name.toLowerCase().includes(searchQuery.toLowerCase()),
         )
       : tableData;
     setFilteredData(filtered);

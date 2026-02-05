@@ -41,8 +41,8 @@ const BookingData = () => {
         prev.map((user, idx) =>
           idx === index
             ? { ...user, vehicleNumber: vehicleNumbers[index] }
-            : user
-        )
+            : user,
+        ),
       );
 
       alert("Vehicle number updated successfully!");
@@ -59,7 +59,7 @@ const BookingData = () => {
         const ids = [];
         snapshot.forEach((childSnapshot) => {
           const userDetails = childSnapshot.val();
-          if (userDetails.userLocation === "ITPL") {
+          if (userDetails.userLocation === "KODIPUR") {
             ids.push(childSnapshot.key);
           }
         });
@@ -79,7 +79,7 @@ const BookingData = () => {
           if (data) {
             const userDetailsArray = Object.values(data.UserDetails || {});
             const filteredData = userDetailsArray.filter(
-              (item) => item.userLocation === "ITPL"
+              (item) => item.userLocation === "KODIPUR",
             );
             setTableData(filteredData);
             setFilteredData(filteredData);
@@ -92,7 +92,7 @@ const BookingData = () => {
         },
         (error) => {
           console.error("Error fetching data:", error);
-        }
+        },
       );
     };
     fetchData();
@@ -101,13 +101,13 @@ const BookingData = () => {
   useEffect(() => {
     const filteredIndex = searchQuery
       ? tableData.findIndex((user) =>
-          user.name.toLowerCase().includes(searchQuery.toLowerCase())
+          user.name.toLowerCase().includes(searchQuery.toLowerCase()),
         )
       : tableData;
     console.log(filteredIndex);
     const filteredElement = searchQuery
       ? tableData.find((user) =>
-          user.name.toLowerCase().includes(searchQuery.toLowerCase())
+          user.name.toLowerCase().includes(searchQuery.toLowerCase()),
         )
       : tableData;
 
@@ -157,7 +157,7 @@ const BookingData = () => {
     const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(
-          collection(db, "vehicleQuantityList")
+          collection(db, "vehicleQuantityList"),
         );
         const newData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -180,7 +180,7 @@ const BookingData = () => {
       }));
       setRequiredData(data);
       const indexInQuantity = data.location.findIndex(
-        (item) => item === "ITPL"
+        (item) => item === "KODIPUR",
       );
       setNewQuantity(data.quantity[indexInQuantity] + 1);
     }
@@ -198,7 +198,7 @@ const BookingData = () => {
       return;
     }
     const updatedQuantities = [...data.quantity];
-    const index = data.location.findIndex((item) => item === "ITPL");
+    const index = data.location.findIndex((item) => item === "KODIPUR");
     updatedQuantities[index] = newQuantity;
 
     const docRef = doc(db, "vehicleQuantityList", data.id);
@@ -207,7 +207,7 @@ const BookingData = () => {
       let newArray = { ...data };
       newArray.quantity = [...updatedQuantities];
       setQuantityData((prevData) =>
-        prevData.map((item) => (item.id === newArray.id ? newArray : item))
+        prevData.map((item) => (item.id === newArray.id ? newArray : item)),
       );
     } catch (error) {
       console.error("Error updating document: ", error);
@@ -255,13 +255,13 @@ const BookingData = () => {
           userLocation,
           image_Url,
         }),
-      }
+      },
     );
 
     if (postRes.ok) {
       const userDetailRef = ref(
         database,
-        `UserDetails/${userDetailsIds[index]}`
+        `UserDetails/${userDetailsIds[index]}`,
       );
       await remove(userDetailRef);
 
@@ -289,7 +289,7 @@ const BookingData = () => {
 
   return (
     <div className="booking-data-container">
-      <h2 className="booking-data-title">ITPL Bookings:</h2>
+      <h2 className="booking-data-title">KODIPUR Bookings:</h2>
       <div className="search-export-container">
         <div className="search-container">
           <input

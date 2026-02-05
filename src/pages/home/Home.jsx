@@ -1,17 +1,16 @@
-import React from 'react';
-import Sidebar from '../../components/sidebar/sidebar';
-import "./Home.css"
+import React from "react";
+import Sidebar from "../../components/sidebar/sidebar";
+import "./Home.css";
 
 const Home = () => {
-    return (
-        <div className='home'>
-            <Sidebar />
-            <div className="homeContainer">
-                <h1>ITPL Branch </h1>            
-            </div>
-           
-        </div>
-    );
-}
+  return (
+    <div className="home">
+      <Sidebar />
+      <div className="homeContainer">
+        <h1>KODIPUR Branch </h1>
+      </div>
+    </div>
+  );
+};
 
 export default Home;
