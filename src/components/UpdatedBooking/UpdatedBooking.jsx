@@ -26,7 +26,7 @@ const UpdatedBooking = () => {
             ...data[key],
           }));
           const filteredData = updatedBookingsArray.filter(
-            (item) => item.userLocation === "KODIPUR",
+            (item) => item.userLocation === "RRNAGAR",
           );
           setTableData(filteredData);
           setFilteredData(filteredData);
